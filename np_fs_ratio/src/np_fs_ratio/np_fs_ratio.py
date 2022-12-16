@@ -14,6 +14,7 @@ class FSstore():
     def apiextract(self):
         tax_return_code = self.EIN #enter assertion if the ein starts with 0, user may need to put ein in paranteshsis
         url = f"https://projects.propublica.org/nonprofits/api/v2/organizations/{tax_return_code}.json"
+        assert r.status_code == 200,"Please enter a valid EIN"
         r = requests.get(url)
         r_text = r.text
         response = json.loads(r_text)

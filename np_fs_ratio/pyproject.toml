@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "np_fs_ratio"
-version = "0.1.0"
+version = "0.1.2"
 description = "This is a packaggeto calculate, compare, and illustrate tsome financial ratios for the nonprofit organization of your choice. "
 authors = ["Jasmine Chen"]
 license = "MIT"
