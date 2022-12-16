@@ -14,7 +14,6 @@ class FSstore():
     def apiextract(self):
         tax_return_code = self.EIN #enter assertion if the ein starts with 0, user may need to put ein in paranteshsis
         url = f"https://projects.propublica.org/nonprofits/api/v2/organizations/{tax_return_code}.json"
-        assert r.status_code == 200,"Please enter a valid EIN"
         r = requests.get(url)
         r_text = r.text
         response = json.loads(r_text)
@@ -99,12 +98,15 @@ def fudeff(EIN, year=2020):
     df1=df1.reset_index()
     df1['Fundraising_Efficiency'] = df1['Total_Contribution']/df1['Fundarising_Expense']
     df1.replace([np.inf, -np.inf], 0, inplace=True)
+    print('Fundraising efficiency is the amount a nonprofit organization spends to raise $1')
+    print('The higher the result, the more efficient the organization is at raising money.')
     if year in df1['Financial_year'].values:
        df1 = df1.loc[df1['Financial_year']==year]
        num = df1['Fundraising_Efficiency'].values[0]
        return(round(num,4))
     else:
         print('Ratio Not Available')
+    print('jfkansld')
 
 #Function for calculating Profit Margin
 def pm(EIN, year=2020):
@@ -126,6 +128,8 @@ def pm(EIN, year=2020):
     df1=df1.reset_index()
     df1['Profit_Margin'] = (df1['Total_Revenue']-df1['Total_Functional_Expense'])/df1['Total_Revenue']
     df1.replace([np.inf, -np.inf], 0, inplace=True)
+    print('profit margin stands of the percentage of revenue that has turned into profits')
+    print('Profit Margin is usually compared with company performance from past years')
     if year in df1['Financial_year'].values:
        df1 = df1.loc[df1['Financial_year']==year]
        ans = (df1['Profit_Margin'].values[0])
@@ -154,6 +158,8 @@ def lvg(EIN, year=2020):
     df1=df1.reset_index()
     df1['Leverages'] = df1['Total_Liability'] / df1['Total_Asset']
     df1.replace([np.inf, -np.inf], 0, inplace=True)
+    print('leverage measures how reliant is an organization on debt?')
+    print('A lower score is better here, with the top-rated charities generally having ratios of less than 5% to 10%.')
     if year in df1['Financial_year'].values:
        df1 = df1.loc[df1['Financial_year']==year]
        ans2 = (df1['Leverages'].values[0])
