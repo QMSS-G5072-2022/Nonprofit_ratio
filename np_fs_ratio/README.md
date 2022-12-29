@@ -1,6 +1,6 @@
 # np_fs_ratio
 
-This is a packaggeto calculate, compare, and illustrate tsome financial ratios for the nonprofit organization of your choice. 
+This is a package to calculate, compare, and illustrate some financial ratios for the nonprofit organization of your choice. 
 
 ## Installation
 
